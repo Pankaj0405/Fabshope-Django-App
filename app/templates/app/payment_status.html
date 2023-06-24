@@ -1,0 +1,18 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Cart{% endblock title %}
+{% block main-content %}
+
+ {% if status %}
+        <div class="container" style="text-align: center;">
+            <i class="fa fa-check-circle" aria-hidden="true" style="font-size: 80px; color: green;"></i>
+        </div>
+        <h2 style="text-align: center;">Thank you. Your payment was successful.</h2>
+    {% else %}
+        <h2 style="text-align: center;">Your Payment is failed! Try again.</h2>
+    {% endif %}
+
+    <div class="text-center mt-5">
+        <a href="{% url 'home' %}" class="btn btn-primary" role="button">Buy another one</a>
+    </div>
+{% endblock main-content %}

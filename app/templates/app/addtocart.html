@@ -1,0 +1,117 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Cart{% endblock title %}
+{% block main-content %}
+<div class="container my-5">
+ <div class="row">
+  <h1 class="text-center mb-5">Shopping Cart</h1>
+  <div class="col-sm-8">
+  <div class="card">
+   <div class="card-body">
+    <h3>Cart</h3>
+    {% for cart in carts %}
+    <hr>
+    <div class="row">
+     <div class="col-sm-3 text-center align-self-center"><img src="{{cart.product.product_image.url}}" alt="" srcset="" class="img-fluid img-thumbnail shadow-sm" height="150" width="150"> </div>
+     <div class="col-sm-9">
+      <div>
+       <h5>{{cart.product.title}}</h5>
+       <p class="mb-2 text-muted small">{{cart.product.description}}</p>
+       <div class="my-3">
+        <label for="quantity">Quantity:</label>
+        <a class="minus-cart btn" pid="{{cart.product.id}}"><i class="fas fa-minus-square fa-lg"></i></a>
+          <span id="quantity">{{cart.quantity}}</span>
+        <a class="plus-cart btn" pid="{{cart.product.id}}"><i class="fas fa-plus-square fa-lg"></i></a>
+       </div> 
+       <div class="d-flex justify-content-between">
+        <a href="#" class="btn btn-sm btn-secondary mr-3 remove-cart" pid="{{cart.product.id}}">Remove item </a>
+        <p class="mb-0"><span><strong>Rs. {{cart.product.discounted_price}}</strong></span></p>
+       </div>
+      </div>
+     </div>
+    </div>
+    {% endfor %}
+<!--    <hr class="text-muted">-->
+<!--    <div class="row my-5">-->
+<!--     <div class="col-sm-3 text-center align-self-center"> <img src="{% static 'app/images/product/2.jpg'%}" alt="" srcset="" class="img-fluid img-thumbnail shadow-sm" height="150" width="150"></div>-->
+<!--     <div class="col-sm-9"> -->
+<!--      <div>-->
+<!--       <h5>Product 2</h5>-->
+<!--       <p class="mb-2 text-muted small">Description: Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio corrupti repudiandae quas tenetur? Vel harum iste impedit ad cupiditate sint soluta consequuntur sed, enim, eligendi labore molestiae! Mollitia, ad exercitationem!</p>-->
+<!--       <div class="my-3">-->
+<!--        <label for="quantity">Quantity:</label>-->
+<!--        <a class="minus-cart btn"><i class="fas fa-minus-square fa-lg"></i></a>-->
+<!--          <span id="quantity">2</span>-->
+<!--        <a class="plus-cart btn"><i class="fas fa-plus-square fa-lg"></i></a>-->
+<!--       </div> -->
+<!--       <div class="d-flex justify-content-between">-->
+<!--        <a href="#" class="btn btn-sm btn-secondary mr-3">Remove item </a>        -->
+<!--        <p class="mb-0"><span><strong>Rs. 320.00</strong></span></p>-->
+<!--       </div>-->
+<!--      </div>-->
+<!--     </div>-->
+<!--    </div>-->
+   </div>
+   </div>
+  </div>
+
+  <div class="col-sm-4">
+   <div class="card">
+    <div class="card-body">
+      <h3>The Total Amount of</h3>
+      <ul class="list-group">
+       <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">Amount<span>Rs. <span id="amount">{{amount}}</span></span></li>
+       <li class="list-group-item d-flex justify-content-between align-items-center px-0">Shipping<span>Rs. 70.00</span></li>
+       <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">
+        <div>
+           <strong>Total</strong> <small>(including VAT)</small>
+         </div>
+        <span><strong>Rs. <strong id="totalamount">{{totalamount}}</strong></strong></span>
+       </li>
+      </ul>
+      <div class="d-grid"><a href="{% url 'checkout' %}" class="btn btn-primary">Place Order</a></div>
+
+    </div>
+   </div>
+  </div>
+  
+ </div>
+</div>
+<div class="container">
+ <div class="row">
+  <div class="col-sm-8">
+   <div class="card">
+    <div class="card-body">
+      <h5 class="mb-4">We accept</h5>
+      <img src="{% static 'app/images/payment.png' %}" alt="" class="img-fluid">
+    </div>
+  </div>
+  </div>
+ </div>
+</div>
+<script>
+    var sec = 5;
+    var myTimer = document.getElementById('myTimer');
+    var myBtn = document.getElementById('myBtn');
+    window.onload = countDown;
+
+    function countDown()
+    {
+        if (sec < 10) {
+            myTimer.innerHTML = "0" + sec;
+        } else {
+            myTimer.innerHTML = sec;
+        }
+        if (sec <= 0) {
+<!--            $("#myBtn").removeAttr("disabled");-->
+<!--            $("#myBtn").removeClass().addClass("btnEnable");-->
+<!--            $("#myTimer").fadeTo(2500, 0);-->
+<!--            myBtn.innerHTML = "Click Me!";-->
+window.location.href="https://www.w3schools.com/howto/howto_js_redirect_webpage.asp";
+            return;
+        }
+        sec -= 1;
+        window.setTimeout(countDown, 1000);
+    }
+</script>
+{% endblock main-content %}
